@@ -56,10 +56,6 @@ aws_region=eu-west-1
 aws_bucket_name=YOUR_BUCKET_NAME
 
 slack_webhook_url=https://hooks.slack.com/services/SOME_GENERATED_VALUE
-
-# For local testing
-;ansible_ssh_user=vagrant
-;ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
 ```
 
 **IMPORTANT**
@@ -109,11 +105,3 @@ Run `cap production deploy` to start deployment process.
 ## Deploying application to already configured server
 
 Just run `ansible-playbook server/app.yml -i server/hosts`. You'll also want to update files from Preparation as appropriate.
-
-## Local testing
-
-Install Vagrant, run `vagrant up` and then provision it as if it's just your production server.
-
-## Todo
-
-- Setup Fail2ban
