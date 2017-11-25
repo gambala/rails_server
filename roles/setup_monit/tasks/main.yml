@@ -1,4 +1,3 @@
----
 - name: Upload monit config
   template: src=templates/monitrc.sh dest=/etc/monit/monitrc owner=root
   notify: reload monit

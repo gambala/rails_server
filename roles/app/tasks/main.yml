@@ -1,6 +1,3 @@
----
-# Configure nginx and setup app dir along with default host. Restart nginx.
-
 - name: Add virtual host to nginx
   become: yes
   template:
