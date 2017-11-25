@@ -16,4 +16,4 @@
               validate='visudo -cf %s'
 
 - name: Setup authorized key for deploy user
-  authorized_key: user=deploy key="{{ lookup('file', '/Users/frey/.ssh/id_rsa.pub') }}"
+  authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
