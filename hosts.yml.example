@@ -2,22 +2,41 @@ rails:
   hosts:
     11.222.333.444
   vars:
+    # Your application name
     app_name: rails_demo
+
+    # Your app domain (for nginx configuration)
     app_domain: rails_demo.com
+
+    # Password for user deploy, encrypted in md5
     user_password: <mkpasswd --method=sha-512>
 
+    # Enable or disable monit installation
     monit_enabled: true
+
+    # Username for monit
     monit_user: admin
+
+    # Password for monit, plain text
     monit_password: monit
+
+    # Allowed IP for monit sign in
     monit_allowed_ip: 0.0.0.0
 
     ruby_version: 2.4.1
 
     postgresql_version: 9.5
 
+    # Make it false for fresh deploy
     restore_backup: false
+
+    # Your app database password (for database.yml)
     postgres_password: <mkpasswd --method=sha-512>
 
     backup_to_aws: false
+    aws_key: AWS_KEY
+    aws_key_secret: AWS_SECRET_KEY
+    aws_region: eu-west-1
+    aws_bucket_name: YOUR_BUCKET_NAME
 
     slack_webhook_url: https://hooks.slack.com/services/<slack webhook uri>
