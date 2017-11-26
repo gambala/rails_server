@@ -1,9 +1,3 @@
-- name: Configure Nginx for app
-  hosts: rails
-  remote_user: deploy
-  roles:
-    - role: app
-
 - name: Add Rails app database and user
   hosts: rails
   remote_user: deploy

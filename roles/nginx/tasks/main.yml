@@ -12,3 +12,7 @@
 - name: Remove passenger link
   file: path=/etc/nginx/sites-enabled/passenger state=absent
 
+- name: Remove default nginx config
+  become: yes
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx
