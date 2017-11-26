@@ -67,9 +67,9 @@ After first deploy and restore database from backup **don't forget** to change `
 
 Run
 ```
-ansible-playbook server/python.yml server/server.yml
+ansible-playbook server/python.yml server/server.yml -i server/hosts.yml
 cap production deploy:check
-ansible-playbook server/app.yml -i server/hosts
+ansible-playbook server/app.yml -i server/hosts.yml
 ```
 
 This script goes through full server configuration process. For now it does next things (in order of applying):
