@@ -1,8 +1,6 @@
 - name: Install backup gem
   become: yes
-  shell: "gem install {{ item }}"
-  with_items:
-    - backup
+  shell: gem install backup
 
 - name: Create backups directory
   file:

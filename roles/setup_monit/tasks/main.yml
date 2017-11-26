@@ -10,7 +10,3 @@
 
 - name: Set rights
   shell: chmod +x /etc/monit/slack_notification.sh
-
-# - name: Upload redis-server config
-#   copy: src=templates/redis-server.conf dest=/etc/monit/redis-server.conf owner=root
-#   notify: reload monit

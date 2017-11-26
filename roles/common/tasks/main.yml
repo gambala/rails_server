@@ -6,10 +6,7 @@
   become: yes
   lineinfile:
     dest: /etc/environment
-    line: "{{ item.line }}"
-  with_items:
-    - { line: LC_ALL=en_US.UTF-8 }
+    line: LC_ALL=en_US.UTF-8
 
 - name: Install libpq-dev for postgresql
   apt: name=libpq-dev
-
