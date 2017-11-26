@@ -1,0 +1,23 @@
+rails:
+  hosts:
+    11.222.333.444
+  vars:
+    app_name: rails_demo
+    app_domain: rails_demo.com
+    user_password: <mkpasswd --method=sha-512>
+
+    monit_enabled: true
+    monit_user: admin
+    monit_password: monit
+    monit_allowed_ip: 0.0.0.0
+
+    ruby_version: 2.4.1
+
+    postgresql_version: 9.5
+
+    restore_backup: false
+    postgres_password: <mkpasswd --method=sha-512>
+
+    backup_to_aws: false
+
+    slack_webhook_url: https://hooks.slack.com/services/<slack webhook uri>
