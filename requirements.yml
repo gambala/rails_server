@@ -1,7 +1,7 @@
 # All roles are installed from Ansible Galaxy
-- src: ANXS.postgresql
 - src: geerlingguy.nodejs
 - src: geerlingguy.passenger
+- src: geerlingguy.postgresql
 - src: geerlingguy.redis
 - src: kamaln7.swapfile
 - src: manala.git
