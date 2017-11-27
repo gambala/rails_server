@@ -1,6 +1,3 @@
-- name: Install curl
-  apt: name=curl
-
 - name: Add locale variables to /etc/environment
   become_user: root
   become: yes
@@ -8,5 +5,20 @@
     dest: /etc/environment
     line: LC_ALL=en_US.UTF-8
 
+- name: Install curl
+  apt: name=curl
+
+- name: Install htop
+  apt: name=htop
+
+- name: Install landscape-common
+  apt: name=landscape-common
+
 - name: Install libpq-dev for postgresql
   apt: name=libpq-dev
+
+- name: Install ncdu
+  apt: name=ncdu
+
+- name: Install vim
+  apt: name=vim

@@ -18,7 +18,6 @@
   remote_user: root
   become: yes
   roles:
-    - root-user-tools
     - manala.git
     - manala.zsh
     - mashimom.oh-my-zsh

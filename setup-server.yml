@@ -9,8 +9,8 @@
   remote_user: deploy
   become: yes
   roles:
-    - { role: common }
-    - { role: geerlingguy.nodejs }
+    - common-software
+    - geerlingguy.nodejs
 
 - name: Add swap file
   hosts: rails
