@@ -1,6 +1,6 @@
 - hosts: rails
   remote_user: root
-  sudo: yes
+  become: yes
   gather_facts: no
   pre_tasks:
     - name: apt-get update
