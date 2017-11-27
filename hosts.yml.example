@@ -15,6 +15,9 @@ rails:
     # From https://github.com/robbyrussell/oh-my-zsh/wiki/themes
     ohmyzsh_theme: kolo
 
+    # Plain password for redis
+    redis_password: 123pass
+
     # Your application name
     app_name: rails_demo
 

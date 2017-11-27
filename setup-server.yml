@@ -48,11 +48,9 @@
   hosts: rails
   remote_user: deploy
   become: yes
-  vars:
-    - redis_port: 6379
-    - redis_bind_interface: 127.0.0.1
   roles:
-    - { role: DavidWittman.redis }
+    - role: DavidWittman.redis
+      redis_bind: 127.0.0.1
 
 - name: Install Ruby
   hosts: rails
