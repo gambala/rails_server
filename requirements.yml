@@ -1,8 +1,8 @@
 # All roles are installed from Ansible Galaxy
+- DavidWittman.redis
 - geerlingguy.nodejs
 - geerlingguy.passenger
 - geerlingguy.postgresql
-- geerlingguy.redis
 - kamaln7.swapfile
 - manala.git
 - manala.zsh
