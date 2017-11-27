@@ -3,3 +3,9 @@
 
 - name: Install htop
   apt: name=htop
+
+- name: Install landscape-common
+  apt: name=landscape-common
+
+- name: Install ncdu
+  apt: name=ncdu
