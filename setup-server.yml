@@ -57,10 +57,10 @@
   remote_user: deploy
   roles:
     - role: rvm_io.ruby
-      rvm1_user: 'deploy'
+      rvm1_user: deploy
       become: yes
       rvm1_rubies:
-        - 'ruby-{{ ruby_version }}'
+        - "ruby-{{ ruby_version }}"
     - role: ruby
 
 - name: Install PostgreSQL
