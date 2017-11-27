@@ -10,6 +10,7 @@
   become: yes
   roles:
     - common-software
+    - manala.fail2ban
     - geerlingguy.nodejs
 
 - name: Add swap file
