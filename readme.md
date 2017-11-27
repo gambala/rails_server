@@ -9,7 +9,7 @@ Ubuntu 16.04 or newer
 
     cd your-rails-project-folder
     git clone git@github.com:gambala/rails_server.git server
-    cp server/hosts.yml.example server/hosts.yml
+    cp server/hosts.example.yml server/hosts.yml
     ansible-galaxy install -r server/requirements.yml
 
 Also:
