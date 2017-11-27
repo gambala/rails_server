@@ -12,6 +12,9 @@ rails:
     deploy_password_crypted: <mkpasswd --method=sha-512>
     root_password_crypted: <mkpasswd --method=sha-512>
 
+    # From https://github.com/robbyrussell/oh-my-zsh/wiki/themes
+    ohmyzsh_theme: kolo
+
     # Your application name
     app_name: rails_demo
 

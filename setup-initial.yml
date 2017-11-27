@@ -21,5 +21,4 @@
     - root-user-tools
     - manala.git
     - manala.zsh
-    - role: mashimom.oh-my-zsh
-      ohmyzsh_theme: aussiegeek
+    - mashimom.oh-my-zsh
