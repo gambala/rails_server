@@ -24,7 +24,7 @@ After first deploy and restore database from backup **don't forget** to change `
 
 Run
 ```
-ansible-playbook server/python.yml -i server/hosts.yml
+ansible-playbook server/python.yml -i server/hosts.yml -e 'ansible_port=22'
 ansible-playbook server/server.yml -i server/hosts.yml
 cap production deploy:check
 ansible-playbook server/app.yml -i server/hosts.yml

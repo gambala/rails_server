@@ -1,0 +1,98 @@
+- name: Set root password
+  user:
+    name: root
+    password: "{{ root_password_crypted }}"
+  become: yes
+  become_method: sudo
+
+- name: Add deploy user
+  user:
+    name: deploy
+    password: "{{ deploy_password_crypted }}"
+    state: present
+    groups: sudo
+    shell: /bin/zsh
+  become: yes
+  become_method: sudo
+
+- name: Add SSH directory
+  file:
+    path: /home/deploy/.ssh
+    state: directory
+    mode: 700
+  become: yes
+  become_method: sudo
+
+- name: Add SSH key
+  authorized_key:
+    user: deploy
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub')}}"
+  become: yes
+  become_method: sudo
+
+- name: add deploy user to sudoers
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: deploy ALL
+    line: deploy ALL=(ALL:ALL) NOPASSWD:ALL
+    state: present
+  become: yes
+  become_method: sudo
+
+- name: Allow deploy user login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^AllowUsers"
+    line: AllowUsers deploy
+    state: present
+  notify: Restart SSH
+  become: yes
+  become_method: sudo
+
+- name: Change SSH port
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^Port"
+    line: "Port {{ deploy_port }}"
+    state: present
+  notify: Restart SSH
+
+- name: Disable SSH DNS
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^UseDNS"
+    line: "UseDNS no"
+    state: present
+  notify: Restart SSH
+
+- name: Disable root login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+  notify: Restart SSH
+  become: yes
+  become_method: sudo
+
+- name: Disable password login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "{{ item }}"
+    state: absent
+  with_items:
+    - "^#PasswordAuthentication"
+    - "^PasswordAuthentication (?!no)"
+  notify: Restart SSH
+  become: yes
+  become_method: sudo
+
+- name: Set PasswordAuthentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: "PasswordAuthentication no"
+    state: present
+    insertafter: "^# Change to no to disable tunnelled clear text passwords"
+  notify: Restart SSH
+  become: yes
+  become_method: sudo

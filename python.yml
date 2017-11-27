@@ -5,3 +5,21 @@
   gather_facts: no
   roles:
     - ansible-python
+
+- name: Setup deploy user
+  hosts: rails
+  remote_user: root
+  become: yes
+  roles:
+    - deploy-user
+
+- name: Install prerequisites
+  hosts: rails
+  remote_user: root
+  become: yes
+  roles:
+    - root-user-tools
+    - manala.git
+    - manala.zsh
+    - role: mashimom.oh-my-zsh
+      ohmyzsh_theme: aussiegeek

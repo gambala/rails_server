@@ -2,6 +2,16 @@ rails:
   hosts:
     11.222.333.444
   vars:
+    # SSH port for hosts, choose randomly from 1025 to 65536
+    ansible_port: 3500
+
+    # Put the same value as for ansible_port
+    deploy_port: 3500
+
+    # Passwords for root and deploy users, encrypted in md5
+    deploy_password_crypted: <mkpasswd --method=sha-512>
+    root_password_crypted: <mkpasswd --method=sha-512>
+
     # Your application name
     app_name: rails_demo
 

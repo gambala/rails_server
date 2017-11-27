@@ -1,13 +1,3 @@
-- name: Setup user
-  hosts: all
-  remote_user: root
-  become: yes
-  roles:
-    - { role: users }
-    - { role: manala.git }
-    - { role: manala.zsh }
-    - { role: mashimom.oh-my-zsh, ohmyzsh_theme: 'aussiegeek' }
-
 - name: Setup user environment
   hosts: rails
   remote_user: deploy
