@@ -24,31 +24,32 @@ After first deploy and restore database from backup **don't forget** to change `
 
 Run
 ```
-ansible-playbook server/python.yml -i server/hosts.yml -e 'ansible_port=22'
-ansible-playbook server/server.yml -i server/hosts.yml
+ansible-playbook server/setup-initial.yml -i server/hosts.yml -e 'ansible_port=22'
+ansible-playbook server/setup-server.yml -i server/hosts.yml
 cap production deploy:check
-ansible-playbook server/app.yml -i server/hosts.yml
+ansible-playbook server/setup-app.yml -i server/hosts.yml
 ```
 
 This script goes through full server configuration process. For now it does next things (in order of applying):
 
-### python.yml
+### setup-initial.yml
 
 - Installs Python2 in order to allow Ansible do all the work
 - Installs pip, python packet manager
-
-### server.yml
-
 - Creates `deploy` user which is our main user for application deployments
-- Configures `zsh` and `oh-my-zsh` for both `root` and `deploy` users
+- Configures `zsh` and `oh-my-zsh` for `root` user
 - Installs `vim` and `htop`
+
+### setup-server.yml
+
+- Configures `zsh` and `oh-my-zsh` for `deploy` user
 - Installs `monit` for server state monitoring and notifications (RAM, HDD, etc)
 - Installs `nginx` with `passenger` to serve your Rails applications
 - Installs `Redis`
 - Installs `Ruby`
 - Installs `PostgreSQL`
 
-### app.yml
+### setup-app.yml
 
 - Configures Nginx to server your Rails application
 - Creates PostgreSQL database and user for your Rails application
@@ -63,4 +64,4 @@ Run `cap production deploy` to start deployment process.
 
 ## Deploying application to already configured server
 
-Just run `ansible-playbook server/app.yml -i server/hosts`. You'll also want to update files from Preparation as appropriate.
+Just run `ansible-playbook server/setup-app.yml -i server/hosts`. You'll also want to update files from Preparation as appropriate.
