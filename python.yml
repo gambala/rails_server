@@ -1,4 +1,5 @@
-- hosts: rails
+- name: Install python for ansible
+  hosts: rails
   remote_user: root
   become: yes
   gather_facts: no
