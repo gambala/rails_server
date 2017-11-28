@@ -1,7 +1,7 @@
 # All roles are installed from Ansible Galaxy
 - DavidWittman.redis
+- geerlingguy.nginx
 - geerlingguy.nodejs
-- geerlingguy.passenger
 - geerlingguy.postgresql
 - kamaln7.swapfile
 - manala.fail2ban

@@ -6,12 +6,6 @@
     mode: 0755
   notify: restart nginx
 
-- name: Remove passenger host
-  file: path=/etc/nginx/sites-available/passenger state=absent
-
-- name: Remove passenger link
-  file: path=/etc/nginx/sites-enabled/passenger state=absent
-
 - name: Remove default nginx config
   become: yes
   file: path=/etc/nginx/sites-enabled/default state=absent
