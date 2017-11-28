@@ -18,6 +18,8 @@ rails:
     # Plain password for redis
     redis_password: 123pass
 
+    nodejs_version: "7.x"
+
     # Your application name
     app_name: rails_demo
 
