@@ -1,5 +1,6 @@
 # All roles are installed from Ansible Galaxy
 - andrewrothstein.rust
+- bearandgiraffe.yarn
 - DavidWittman.redis
 - geerlingguy.nginx
 - geerlingguy.nodejs
