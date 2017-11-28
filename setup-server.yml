@@ -39,6 +39,13 @@
     - geerlingguy.nginx
     - nginx
 
+- name: Setup ImageMagick
+  hosts: rails
+  remote_user: deploy
+  become: yes
+  roles:
+    - hashbangcode.imagemagick
+
 - name: Install redis
   hosts: rails
   remote_user: deploy
