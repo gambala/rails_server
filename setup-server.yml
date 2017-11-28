@@ -46,6 +46,13 @@
   roles:
     - hashbangcode.imagemagick
 
+- name: Setup Rust for faster_path gem
+  hosts: rails
+  remote_user: deploy
+  become: yes
+  roles:
+    - andrewrothstein.rust
+
 - name: Install redis
   hosts: rails
   remote_user: deploy
