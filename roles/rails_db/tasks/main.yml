@@ -1,10 +1,7 @@
 - name: "Add {{ app_name }} app database"
-  postgresql_db: name={{ app_name }}_production
-                 encoding='UTF-8'
-
-- name: "Add {{ app_name }} user to {{ app_name }}_production database"
-  postgresql_user: name={{ app_name }}
-                   db={{ app_name }}_production
-                   password={{ user_password }}
-                   role_attr_flags=CREATEDB,NOSUPERUSER
-                   encrypted=true
+  postgresql_db:
+    name: "{{ db_name }}_{{ env }}"
+    encoding: 'UTF-8'
+    login_host: 127.0.0.1
+    login_user: deploy
+    login_password: "{{ postgres_password }}"
