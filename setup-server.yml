@@ -23,14 +23,6 @@
       swapfile_swappiness: 10
       swapfile_location: /mnt/swapfile_2GB
 
-- name: Setup monit
-  hosts: rails
-  remote_user: deploy
-  become: yes
-  roles:
-    - { role: pgolm.monit, when: (monit_enabled is defined) and monit_enabled }
-    - { role: setup_monit, when: (monit_enabled is defined) and monit_enabled }
-
 - name: Setup nginx
   hosts: rails
   remote_user: deploy
@@ -97,3 +89,11 @@
         - name: deploy
           password: "{{ postgres_password }}"
           role_attr_flags: CREATEDB
+
+- name: Setup monit
+  hosts: rails
+  remote_user: deploy
+  become: yes
+  roles:
+    - role: wtanaka.monit
+      when: (monit_enabled is defined) and monit_enabled
