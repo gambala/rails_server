@@ -75,12 +75,6 @@
   remote_user: deploy
   become: yes
   roles:
-    # - role: ANXS.postgresql
-    #   postgresql_version: 9.5
-    #   postgresql_encoding: 'UTF-8'
-    #   postgresql_locale: 'en_US.UTF-8'
-    #   postgresql_admin_user: 'postgres'
-    #   postgresql_default_auth_method: 'trust'
     - role: geerlingguy.postgresql
       postgresql_version: 9.5
       postgresql_locales:
