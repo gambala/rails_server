@@ -1,8 +1,3 @@
-- name: Upload database.yml
-  template:
-    src: templates/database.yml
-    dest: /home/deploy/var/www/{{ app_name }}/shared/config/database.yml
-
 - name: Upload db dump
   remote_user: deploy
   when: restore_backup
