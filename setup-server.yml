@@ -93,3 +93,7 @@
       postgresql_version: 9.5
       postgresql_locales:
         - 'en_US.UTF-8'
+      postgresql_users:
+        - name: deploy
+          password: "{{ postgres_password }}"
+          role_attr_flags: CREATEDB
