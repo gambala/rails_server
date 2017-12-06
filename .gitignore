@@ -1,4 +1,5 @@
 *.retry
 *.sql
-hosts
-hosts.yml
+hosts*
+
+!hosts*.example*
