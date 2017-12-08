@@ -31,7 +31,6 @@
     - role: geerlingguy.nginx
       nginx_conf_template: "{{ playbook_dir }}/templates/nginx.conf.j2"
       nginx_vhost_template: "{{ playbook_dir }}/templates/vhost.j2"
-    - nginx
 
 - name: Setup ImageMagick
   hosts: rails
