@@ -1,73 +1,120 @@
-# What is this?
+# What is it?
 
-This is an automated script to help you setup new server and deploy Rails application along with database dump.
+`rails_server` is a bunch of Ansible playbooks, that helps you to setup new server and to deploy Rails application along with database dump.
 
-## Requirements:
-Ubuntu 16.04 or newer
+## What technologies it covers?
+
+- Ubuntu 16.04 or newer
+- ZSH, Oh My ZSH!
+- PostgreSQL
+- NodeJS
+- ImageMagick
+- Yarn
+- Rust
+- Redis
+- RVM, Ruby MRI
+- Monit
+- Let's Encrypt (certbot)
+
+Also there are some hardcoded limits:
+
+- Ubuntu and PostgreSQL user can be named only as `deploy`
 
 ## Setup
 
     cd your-rails-project-folder
     git clone git@github.com:gambala/rails_server.git server
-    cp server/hosts.example.yml server/hosts.yml
+    cp server/hosts.all.example.yml server/hosts.all.yml
+    cp server/hosts.production.example.yml server/hosts.production.yml
     ansible-galaxy install -r server/requirements.yml
-
-Also:
-
-1. Place your postgres database dump at `server/app_name.sql`. Dump must be created with following command:
-
-`pg_dump --clean --format c --verbose --blobs --file database_name.dump database_name`
-`scp -P your_port your_user@your_host:database_name.dump server/files`
-`scp -P 4000 deploy@site.com:database_name.dump server/files`
-
-`tar -czvf app_name_staging_uploads.tar.gz apps/app_name/shared/public/uploads/`
-`scp -P 4000 deploy@site.com:app_name_staging_uploads.tar.gz server/files`
-
-2. Update IP address of your server in `config/deploy/production.rb` and set user value to `deploy`.
 
 ## Usage
 
-Run
+### With brand new server
+
+1. Create server on your hosting
+2. Update credentials in server/hosts files and in capistrano config files
+3. Run commands:
+
 ```
 ansible-playbook server/setup-initial.yml -i server/hosts.all.yml -i server/hosts.production.yml -e 'ansible_port=22'
 ansible-playbook server/setup-server.yml -i server/hosts.all.yml -i server/hosts.production.yml
-cap production deploy:check
+```
+
+### With configured server
+
+1. Run commands:
+
+```
 ansible-playbook server/setup-app.yml -i server/hosts.all.yml -i server/hosts.production.yml
+cap production setup
+cap production puma:nginx_conf
+cap production deploy
+```
+
+2. Ssh to your new server and run command:
+
+```
+sudo service nginx restart
+```
+
+### With data from old server
+
+1. Ssh to your old server
+2. Make DB dump and uploads (from carrierwave for example) archive:
+
+```
+pg_dump --clean --format c --verbose --blobs --file project_production.dump project_production
+tar -czvf project_production_uploads.tar.gz apps/app_name/shared/public/uploads/
+```
+
+3. Download these files to your `server/files` folder:
+
+```
+scp -P 4000 deploy@site.com:project_production.dump server/files
+scp -P 4000 deploy@site.com:project_production_uploads.tar.gz server/files
+```
+
+4. Run role:
+
+```
 ansible-playbook server/restore-data.yml -i server/hosts.all.yml -i server/hosts.production.yml
 ```
 
-This script goes through full server configuration process. For now it does next things (in order of applying):
+## Under the hood
+
+Each playbook runs specific roles, listed below.
 
 ### setup-initial.yml
 
 - Installs Python2 in order to allow Ansible do all the work
 - Installs pip, python packet manager
 - Creates `deploy` user which is our main user for application deployments
-- Configures `zsh` and `oh-my-zsh` for `root` user
-- Installs `vim` and `htop`
+- Configures `git`, `zsh` and `oh-my-zsh` for `root` user
 
 ### setup-server.yml
 
 - Configures `zsh` and `oh-my-zsh` for `deploy` user
-- Installs `monit` for server state monitoring and notifications (RAM, HDD, etc)
-- Installs `nginx` with `passenger` to serve your Rails applications
-- Installs `Redis`
-- Installs `Ruby`
-- Installs `PostgreSQL`
+- Adds `en_US.UTF-8` locale
+- Installs `curl`, `htop`, `landscape-common`, `ncdu` and `vim`
+- Installs and configures `fail2ban`
+- Installs NodeJS
+- Adds 2GB swapfile
+- Installs Nginx with specific configs (one of them includes the code for certbot)
+- Installs ImageMagick, Yarn and Rust
+- Installs Redis
+- Installs RVM and Ruby
+- Installs PostgreSQL and creates `deploy` superuser in it
+- Installs Monit for server state monitoring and notifications (RAM, HDD, etc)
+- Installs Certbot and registers in it with email from hosts
 
 ### setup-app.yml
 
-- Configures Nginx to server your Rails application
-- Creates PostgreSQL database and user for your Rails application
+- Creates PostgreSQL database for your Rails application
+- Issues ssl certificates with certbot for domains from your hosts
+- Automates daily DB backups with uploading to AWS S3
+
+### restore-data.yml
+
 - Uploads database dump and restores it on server
-- Setups daily DB backups with uploading to Yandex Disk
-
-### Application
-
-Run `cap production deploy` to start deployment process.
-
-### That's all!
-
-## Deploying application to already configured server
-
-Just run `ansible-playbook server/setup-app.yml -i server/hosts`. You'll also want to update files from Preparation as appropriate.
+- Uploads `uploads` archive and unzip in on server
