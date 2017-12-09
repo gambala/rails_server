@@ -1,0 +1,29 @@
+rails:
+  vars:
+    # Ansible and initial vars
+    ansible_port: "{{ deploy_port }}" # do not change it
+    OHMYZSH_THEME: kolo
+
+    # Server vars
+    nodejs_version: "7.x"
+    postgresql_version: 9.5
+    ruby_version: 2.4.1
+
+    letsencrypt_email: my-email@mail.com
+
+    monit_enabled: true
+    monit_user: username
+    monit_password: password
+    monit_allowed_ip: 0.0.0.0
+
+    slack_webhook_url: https://hooks.slack.com/services/<slack webhook uri>
+
+    aws_backups_enabled: false
+    aws_bucket_name: YOUR_BUCKET_NAME
+    aws_key: AWS_KEY
+    aws_key_secret: AWS_SECRET_KEY
+    aws_region: eu-west-1
+
+    # App vars
+    app_name: melp
+    db_name: melp_rails

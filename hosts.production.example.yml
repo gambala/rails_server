@@ -1,0 +1,16 @@
+rails:
+  hosts:
+    78.155.199.245
+
+  vars:
+    env: production
+
+    deploy_port: 3500 # SSH port for hosts, choose randomly from 1025 to 65536
+    deploy_password_crypted: <mkpasswd --method=sha-512>
+    postgres_password_crypted: <mkpasswd --method=sha-512>
+    root_password_crypted: <mkpasswd --method=sha-512>
+    redis_password: qwerty
+
+    letsencrypt_domains:
+      - site.com
+      - www.site.com

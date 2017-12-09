@@ -32,11 +32,11 @@ After first deploy and restore database from backup **don't forget** to change `
 
 Run
 ```
-ansible-playbook server/setup-initial.yml -i server/hosts.shared.yml -i server/hosts.production.yml -e 'ansible_port=22'
-ansible-playbook server/setup-server.yml -i server/hosts.shared.yml -i server/hosts.production.yml
+ansible-playbook server/setup-initial.yml -i server/hosts.all.yml -i server/hosts.production.yml -e 'ansible_port=22'
+ansible-playbook server/setup-server.yml -i server/hosts.all.yml -i server/hosts.production.yml
 cap production deploy:check
-ansible-playbook server/setup-app.yml -i server/hosts.shared.yml -i server/hosts.production.yml
-ansible-playbook server/restore-data.yml -i server/hosts.shared.yml -i server/hosts.production.yml
+ansible-playbook server/setup-app.yml -i server/hosts.all.yml -i server/hosts.production.yml
+ansible-playbook server/restore-data.yml -i server/hosts.all.yml -i server/hosts.production.yml
 ```
 
 This script goes through full server configuration process. For now it does next things (in order of applying):
