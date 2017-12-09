@@ -6,6 +6,7 @@
 - name: Restore database with psql
   shell: >
     pg_restore --clean --format c --verbose
+    --no-owner
     --username deploy
     --dbname {{ db_name }}_{{ env }}
     /home/deploy/apps/{{ app_name }}-{{ env }}/shared/{{ db_name }}_{{ env }}.dump

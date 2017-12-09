@@ -64,7 +64,7 @@ sudo service nginx restart
 2. Make DB dump and uploads (from carrierwave for example) archive:
 
 ```
-pg_dump --clean --format c --verbose --blobs --file project_production.dump project_production
+pg_dump --clean --format c --verbose --blobs --no-owner --file project_production.dump project_production
 tar -czvf project_production_uploads.tar.gz apps/app_name/shared/public/uploads/
 ```
 
