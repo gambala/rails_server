@@ -1,0 +1,9 @@
+- name: Add SSL certificates to domains with certbot
+  command: >
+    certbot certonly --non-interactive
+    --email {{ letsencrypt_email }}
+    --agree-tos
+    -d {{ letsencrypt_domains | join(" -d ") }}
+  become_user: root
+  become: yes
+  when: letsencrypt_domains|length > 0
