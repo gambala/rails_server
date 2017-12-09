@@ -1,11 +1,11 @@
-- name: Upload DB
-  hosts: rails
-  remote_user: deploy
-  roles:
-    - upload-rails-database
-
 - name: Upload uploads
   hosts: rails
   remote_user: deploy
   roles:
     - upload-uploads
+
+- name: Upload DB
+  hosts: rails
+  remote_user: deploy
+  roles:
+    - upload-rails-database
