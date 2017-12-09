@@ -82,7 +82,7 @@
         - 'en_US.UTF-8'
       postgresql_users:
         - name: deploy
-          password: "{{ postgres_password }}"
+          password: "{{ postgres_password_crypted }}"
           role_attr_flags: SUPERUSER
 
 - name: Setup monit

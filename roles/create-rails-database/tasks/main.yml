@@ -4,4 +4,4 @@
     encoding: 'UTF-8'
     login_host: 127.0.0.1
     login_user: deploy
-    login_password: "{{ postgres_password }}"
+    login_password: "{{ postgres_password_crypted }}"

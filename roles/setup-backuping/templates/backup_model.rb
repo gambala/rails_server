@@ -14,7 +14,7 @@ Model.new(:{{ app_name }}, 'Description for {{ app_name }} backup') do
   database PostgreSQL do |db|
     db.name               = "{{ app_name }}_production"
     db.username           = "{{ app_name }}"
-    db.password           = "{{ postgres_password }}"
+    db.password           = "{{ postgres_password_crypted }}"
     db.host               = "localhost"
     db.port               = 5432
     # db.socket             = "/tmp/pg.sock"
