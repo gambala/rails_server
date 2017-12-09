@@ -1,3 +1,4 @@
+*.dump
 *.retry
 *.sql
 hosts*
