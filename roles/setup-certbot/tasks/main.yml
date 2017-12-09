@@ -1,0 +1,24 @@
+- name: Install requirements
+  apt:
+    name: software-properties-common
+
+- name: Add certbot repository
+  apt_repository:
+    repo: ppa:certbot/certbot
+    state: present
+
+- name: Update repositories cache and install certbot
+  apt:
+    update_cache: yes
+    name: certbot
+
+- name: Upload cli.ini
+  template:
+    src: templates/cli.ini
+    dest: /etc/letsencrypt/cli.ini
+
+- name: Register in certbot
+  command: "certbot register --email {{ letsencrypt_email }} --agree-tos --no-eff-email"
+  become_user: root
+  become: yes
+  ignore_errors: yes
