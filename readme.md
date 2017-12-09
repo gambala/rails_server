@@ -14,7 +14,7 @@ Ubuntu 16.04 or newer
 
 Also:
 
-1. Place your postgres database dump at `server/app_name.sql`. Dump must be created with following command: `pg_dump --no-owner app_name > app_name.sql -U DB_USERNAME`
+1. Place your postgres database dump at `server/app_name.sql`. Dump must be created with following command: `pg_dump --clean --format c --verbose --blobs --file database_name.dump database_name`
 2. Update IP address of your server in `config/deploy/production.rb` and set user value to `deploy`.
 
 **IMPORTANT**
@@ -28,6 +28,7 @@ ansible-playbook server/setup-initial.yml -i server/hosts.shared.yml -i server/h
 ansible-playbook server/setup-server.yml -i server/hosts.shared.yml -i server/hosts.production.yml
 cap production deploy:check
 ansible-playbook server/setup-app.yml -i server/hosts.shared.yml -i server/hosts.production.yml
+ansible-playbook server/restore-data.yml -i server/hosts.shared.yml -i server/hosts.production.yml
 ```
 
 This script goes through full server configuration process. For now it does next things (in order of applying):

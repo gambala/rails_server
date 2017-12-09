@@ -1,0 +1,6 @@
+- name: Upload DB
+  hosts: rails
+  remote_user: deploy
+  roles:
+    - role: upload-rails-database
+      when: restore_backup

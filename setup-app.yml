@@ -11,12 +11,6 @@
   roles:
     - issue-ssl-certificates
 
-- name: Upload DB
-  hosts: rails
-  remote_user: deploy
-  roles:
-    - upload-rails-database
-
 - name: Automate backups
   hosts: rails
   remote_user: deploy

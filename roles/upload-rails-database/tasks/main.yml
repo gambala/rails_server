@@ -1,10 +1,11 @@
-- name: Upload db dump
-  remote_user: deploy
-  when: restore_backup
+- name: Upload db dump to server
   copy:
-    src: "{{ app_name }}.sql"
-    dest: /home/deploy/var/www/{{ app_name }}/shared/{{ app_name }}.sql
+    src: "{{ playbook_dir }}/files/{{ db_name }}_{{ env }}.dump"
+    dest: /home/deploy/apps/{{ app_name }}-{{ env }}/shared/{{ db_name }}_{{ env }}.dump
 
-- name: restore db
-  when: restore_backup
-  shell: "psql {{ app_name }}_production < /home/deploy/var/www/{{ app_name }}/shared/{{ app_name }}.sql -U {{ app_name }}"
+- name: Restore database with psql
+  shell: >
+    pg_restore --clean --format c --verbose
+    --username {{ postgres_user }}
+    --dbname {{ db_name }}_{{ env }}
+    /home/deploy/apps/{{ app_name }}-{{ env }}/shared/{{ db_name }}_{{ env }}.dump
