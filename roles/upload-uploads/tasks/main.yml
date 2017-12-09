@@ -1,0 +1,4 @@
+- name: Extract archive to app public folder
+  unarchive:
+    src: "{{ playbook_dir }}/files/{{ db_name }}_{{ env }}_uploads.tar.gz"
+    dest: /home/deploy

@@ -14,7 +14,15 @@ Ubuntu 16.04 or newer
 
 Also:
 
-1. Place your postgres database dump at `server/app_name.sql`. Dump must be created with following command: `pg_dump --clean --format c --verbose --blobs --file database_name.dump database_name`
+1. Place your postgres database dump at `server/app_name.sql`. Dump must be created with following command:
+
+`pg_dump --clean --format c --verbose --blobs --file database_name.dump database_name`
+`scp -P your_port your_user@your_host:database_name.dump server/files`
+`scp -P 4000 deploy@site.com:database_name.dump server/files`
+
+`tar -czvf app_name_staging_uploads.tar.gz apps/app_name/shared/public/uploads/`
+`scp -P 4000 deploy@site.com:app_name_staging_uploads.tar.gz server/files`
+
 2. Update IP address of your server in `config/deploy/production.rb` and set user value to `deploy`.
 
 **IMPORTANT**

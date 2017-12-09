@@ -4,3 +4,9 @@
   roles:
     - role: upload-rails-database
       when: restore_backup
+
+- name: Upload uploads
+  hosts: rails
+  remote_user: deploy
+  roles:
+    - role: upload-uploads

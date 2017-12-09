@@ -3,4 +3,6 @@
 *.sql
 hosts*
 
+files/*uploads.tar.gz
+
 !hosts*.example*
