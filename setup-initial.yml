@@ -4,14 +4,14 @@
   become: yes
   gather_facts: no
   roles:
-    - ansible-python
+    - install-python-for-ansible
 
 - name: Setup deploy user
   hosts: rails
   remote_user: root
   become: yes
   roles:
-    - deploy-user
+    - create-deploy-user
 
 - name: Install prerequisites
   hosts: rails

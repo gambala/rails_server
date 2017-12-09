@@ -2,24 +2,24 @@
   hosts: rails
   remote_user: deploy
   roles:
-    - rails_db
+    - create-rails-database
 
 - name: Turn on https for domains
   hosts: rails
   remote_user: deploy
   become: yes
   roles:
-    - add-https-for-domains
+    - issue-ssl-certificates
 
 - name: Upload DB
   hosts: rails
   remote_user: deploy
   roles:
-    - upload_db
+    - upload-rails-database
 
 - name: Automate backups
   hosts: rails
   remote_user: deploy
   roles:
-    - role: backups
+    - role: setup-backuping
       when: (backup_to_aws is defined) and backup_to_aws

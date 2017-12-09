@@ -1,4 +1,4 @@
-- name: Add SSL certificates to domains with certbot
+- name: Issue SSL certificates for domains with certbot
   command: >
     certbot certonly --non-interactive
     --email {{ letsencrypt_email }}

@@ -9,7 +9,7 @@
   remote_user: deploy
   become: yes
   roles:
-    - common-software
+    - install-common-software
     - manala.fail2ban
     - geerlingguy.nodejs
 
@@ -50,7 +50,7 @@
   hosts: rails
   remote_user: deploy
   roles:
-    - rust
+    - install-rust
 
 - name: Install redis
   hosts: rails
@@ -69,7 +69,7 @@
       become: yes
       rvm1_rubies:
         - "ruby-{{ ruby_version }}"
-    - ruby
+    - setup-ruby
 
 - name: Install PostgreSQL
   hosts: rails
