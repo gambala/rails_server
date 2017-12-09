@@ -2,11 +2,10 @@
   hosts: rails
   remote_user: deploy
   roles:
-    - role: upload-rails-database
-      when: restore_backup
+    - upload-rails-database
 
 - name: Upload uploads
   hosts: rails
   remote_user: deploy
   roles:
-    - role: upload-uploads
+    - upload-uploads

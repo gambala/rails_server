@@ -25,9 +25,6 @@ Also:
 
 2. Update IP address of your server in `config/deploy/production.rb` and set user value to `deploy`.
 
-**IMPORTANT**
-After first deploy and restore database from backup **don't forget** to change `restore_backup` value to `false`. In other case on next applying `app.yml` playbook your database will be rewrited with provided in `server` directory.
-
 ## Usage
 
 Run
