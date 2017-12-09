@@ -2,16 +2,17 @@
   hosts: rails
   remote_user: deploy
   roles:
-    - role: rails_db
+    - rails_db
 
 - name: Upload DB
   hosts: rails
   remote_user: deploy
   roles:
-    - role: upload_db
+    - upload_db
 
 - name: Automate backups
   hosts: rails
   remote_user: deploy
   roles:
-    - { role: backups, when: (backup_to_aws is defined) and backup_to_aws }
+    - role: backups
+      when: (backup_to_aws is defined) and backup_to_aws

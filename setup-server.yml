@@ -69,7 +69,7 @@
       become: yes
       rvm1_rubies:
         - "ruby-{{ ruby_version }}"
-    - role: ruby
+    - ruby
 
 - name: Install PostgreSQL
   hosts: rails
