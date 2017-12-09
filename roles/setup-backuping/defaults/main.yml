@@ -1,2 +1,2 @@
-backup_to_aws: false
+aws_backups_enabled: false
 aws_region: eu-west-1

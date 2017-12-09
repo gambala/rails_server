@@ -16,4 +16,4 @@
   remote_user: deploy
   roles:
     - role: setup-backuping
-      when: (backup_to_aws is defined) and backup_to_aws
+      when: aws_backups_enabled
