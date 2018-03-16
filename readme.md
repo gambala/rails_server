@@ -48,7 +48,7 @@ ansible-playbook server/setup-server.yml -i server/hosts.all.yml -i server/hosts
 ```
 ansible-playbook server/setup-app.yml -i server/hosts.all.yml -i server/hosts.production.yml
 cap production setup
-cap production puma:nginx_conf
+cap production puma:nginx_config
 cap production deploy
 ```
 
