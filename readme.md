@@ -126,3 +126,57 @@ Each playbook runs specific roles, listed below.
 
 - Uploads database dump and restores it on server
 - Uploads `uploads` archive and unzip in on server
+
+# Additional steps
+
+## Turn monit web interface on
+
+Run `sudo nano /etc/monit/monitrc` and write this to file:
+
+```
+set daemon 30
+
+set logfile /var/log/monit.log
+
+set idfile /var/lib/monit/id
+
+set statefile /var/lib/monit/state
+
+set eventqueue
+    basedir /var/lib/monit/events # set the base directory where events will be stored
+    slots 100 # optionally limit the queue size
+
+set httpd port 2812 and
+    allow admin:monit      # require user 'admin' with password 'monit'
+
+include /etc/monit/conf.d/*
+include /etc/monit/conf-enabled/*
+```
+
+Then run `sudo monit reload`.
+
+## Add nginx to monit
+
+Run `sudo nano /etc/monit/conf-enabled/nginx` and write this:
+
+```
+ check process nginx with pidfile /var/run/nginx.pid
+   group www
+   group nginx
+   start program = "/etc/init.d/nginx start"
+   stop program = "/etc/init.d/nginx stop"
+#  if failed port 80 protocol http request "/" then restart
+   if 5 restarts with 5 cycles then timeout
+   depend nginx_bin
+   depend nginx_rc
+
+ check file nginx_bin with path /usr/sbin/nginx
+   group nginx
+   include /etc/monit/templates/rootbin
+
+ check file nginx_rc with path /etc/init.d/nginx
+   group nginx
+   include /etc/monit/templates/rootbin
+```
+
+Then run `sudo monit reload`.
