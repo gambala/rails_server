@@ -24,6 +24,8 @@ Also there are some hardcoded limits:
 
     cd your-rails-project-folder
     git clone git@github.com:gambala/rails_server.git server
+    echo /server >> .gitignore
+    git commit -am "Gitignore server folder"
     cp server/hosts.all.example.yml server/hosts.all.yml
     cp server/hosts.production.example.yml server/hosts.production.yml
     ansible-galaxy install -r server/requirements.yml
