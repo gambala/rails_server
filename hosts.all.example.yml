@@ -5,7 +5,7 @@ rails:
     OHMYZSH_THEME: kolo
 
     # Server vars
-    nodejs_version: "7.x"
+    nodejs_version: "8.x"
     postgresql_version: 9.5
     ruby_version: 2.4.1
 
@@ -25,5 +25,5 @@ rails:
     aws_region: eu-west-1
 
     # App vars
-    app_name: melp
-    db_name: melp_rails
+    app_name: project
+    db_name: project
