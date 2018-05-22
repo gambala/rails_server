@@ -58,6 +58,12 @@ cap production deploy
 sudo service nginx restart
 ```
 
+or for new server:
+
+```
+sudo service nginx start
+```
+
 ### With data from old server
 
 1. Ssh to your old server
