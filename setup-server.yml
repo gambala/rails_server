@@ -64,7 +64,7 @@
   hosts: rails
   remote_user: deploy
   roles:
-    - role: rvm_io.ruby
+    - role: rvm.ruby
       rvm1_user: deploy
       become: yes
       rvm1_rubies:
