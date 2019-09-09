@@ -1,3 +1,5 @@
+<img src="https://github.com/gambala/rails_server/raw/master/logo.png" alt="rails_server logo" width="295" height="124">
+
 # What is it?
 
 `rails_server` is a bunch of Ansible playbooks, that helps you to setup new server and to deploy Rails application along with database dump.
