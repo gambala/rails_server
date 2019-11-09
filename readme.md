@@ -1,4 +1,4 @@
-<img src="https://github.com/gambala/rails_server/raw/master/logo.png" alt="rails_server logo" width="256" height="256">
+<img src="https://github.com/gambala/rails_server/raw/master/logo-v2.png" alt="rails_server logo" width="256" height="256">
 
 # What is it?
 
