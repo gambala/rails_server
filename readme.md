@@ -49,11 +49,17 @@ ansible-playbook server/setup-server.yml -i server/hosts.all.yml -i server/hosts
 
 ### With configured server
 
+0. Place your cap templates in the proper folder
+
+- /config/deploy/templates/nginx_conf.erb
+- /config/deploy/templates/puma.rb.erb
+
 1. Run commands:
 
 ```
 ansible-playbook server/setup-app.yml -i server/hosts.all.yml -i server/hosts.production.yml
 cap production setup
+cap production puma:config
 cap production puma:nginx_config
 cap production deploy
 ```
@@ -68,6 +74,12 @@ or for new server:
 
 ```
 sudo service nginx start
+```
+
+If you stuck with errors, you can diagnose your nginx config with:
+
+```
+sudo nginx -c /etc/nginx/nginx.conf -t
 ```
 
 ### With data from old server
