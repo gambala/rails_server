@@ -2,11 +2,6 @@
   apt:
     name: software-properties-common
 
-- name: Add certbot repository
-  apt_repository:
-    repo: ppa:certbot/certbot
-    state: present
-
 - name: Update repositories cache and install certbot
   apt:
     update_cache: yes
