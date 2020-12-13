@@ -12,9 +12,9 @@ rails:
     letsencrypt_email: my-email@mail.com
 
     monit_enabled: true
-    monit_user: username
-    monit_password: password
-    monit_allowed_ip: 0.0.0.0
+    monit_webinterface_enabled: true
+    monit_webinterface_port: 2812
+    monit_webinterface_acl_rules: "admin:password"
 
     slack_webhook_url: https://hooks.slack.com/services/<slack webhook uri>
 
