@@ -8,7 +8,7 @@
 
 ## What technologies it covers?
 
-- Ubuntu 16.04 or newer
+- Ubuntu 16.04 or newer (for 20.04 please use [ubuntu-20-04](https://github.com/gambala/rails_server/tree/ubuntu-20-04) branch
 - ZSH, Oh My ZSH!
 - PostgreSQL
 - NodeJS
